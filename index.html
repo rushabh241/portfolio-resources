@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Rushabh Vaidya · Portfolio</title>
+    <!-- Google Fonts + Font Awesome (CDN, no backend) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            scroll-behavior: smooth;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* modern glassmorphism + subtle shadows */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(2px);
+            border-radius: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02), 0 2px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* header / nav */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo {
+            font-size: 1.7rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #1e293b;
+            transition: color 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        /* hero section */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            margin: 48px 0 60px 0;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-badge {
+            background: #e0e7ff;
+            color: #1e40af;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 18px;
+            letter-spacing: -1px;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #2563eb, #8b5cf6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: #334155;
+            margin-bottom: 28px;
+            max-width: 500px;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .btn-primary {
+            background: #0f172a;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #1e293b;
+            transform: scale(0.97);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #cbd5e1;
+            padding: 12px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            color: #1e293b;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline:hover {
+            border-color: #2563eb;
+            background: #f1f5f9;
+        }
+
+        /* photo placeholder — ready for your image */
+        .photo-frame {
+            flex: 0.8;
+            min-width: 220px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .photo-placeholder {
+            width: 260px;
+            height: 260px;
+            background: linear-gradient(145deg, #e2e8f0, #cbd5e1);
+            border-radius: 40% 60% 35% 65% / 70% 40% 60% 30%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            border: 3px solid white;
+        }
+
+        .photo-placeholder i {
+            font-size: 64px;
+            color: #475569;
+        }
+
+        .photo-placeholder span {
+            font-size: 0.85rem;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-weight: 500;
+        }
+
+        /* section titles */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 48px 0 28px 0;
+            letter-spacing: -0.3px;
+            border-left: 6px solid #2563eb;
+            padding-left: 18px;
+        }
+
+        /* projects grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 28px;
+            margin-bottom: 20px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            transition: all 0.2s;
+            border: 1px solid #eef2ff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+
+        .project-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 12px 0;
+        }
+
+        .tag {
+            background: #eef2ff;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #1e40af;
+        }
+
+        .card-link {
+            margin-top: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* experience + education flex row */
+        .dual-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin: 20px 0 20px;
+        }
+
+        .exp-card,
+        .edu-card {
+            flex: 1;
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid #eef2ff;
+        }
+
+        .exp-item,
+        .edu-item {
+            margin-bottom: 24px;
+        }
+
+        .exp-item h4,
+        .edu-item h4 {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .date {
+            font-size: 0.75rem;
+            color: #475569;
+            margin: 6px 0 8px;
+            letter-spacing: 0.2px;
+        }
+
+        /* resume & certificates row (github links) */
+        .resources {
+            background: linear-gradient(135deg, #f1f5f9, #ffffff);
+            border-radius: 1.8rem;
+            padding: 28px 32px;
+            margin: 40px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .resource-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .github-link {
+            background: #0f172a;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: 0.2s;
+        }
+
+        .github-link i {
+            font-size: 1.2rem;
+        }
+
+        .github-link:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .res-text {
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        /* footer socials */
+        footer {
+            margin-top: 70px;
+            padding: 30px 0 40px;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #475569;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: #334155;
+            font-size: 1.5rem;
+            transition: color 0.2s;
+        }
+
+        .social-links a:hover {
+            color: #2563eb;
+        }
+
+        @media (max-width: 780px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.4rem;
+            }
+
+            .btn-group {
+                justify-content: center;
+            }
+
+            .section-title {
+                text-align: left;
+            }
+
+            .resources {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* PDF modal */
+        .pdf-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        .pdf-modal-overlay.open { display: flex; }
+        .pdf-modal {
+            background: #1e293b;
+            border-radius: 1rem;
+            width: 90vw;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+        .pdf-modal-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            background: #0f172a;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .pdf-modal-bar a {
+            color: #93c5fd;
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+        }
+        .pdf-modal-bar a:hover { color: #fff; }
+        .pdf-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.4rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 2px 6px;
+        }
+        .pdf-close:hover { color: #f87171; }
+        .pdf-modal iframe {
+            flex: 1;
+            border: none;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <div class="logo">Rushabh Shreyas Vaidya</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#projects">Projects</a>
+                <a href="#experience">Experience</a>
+                <a href="#education">Education</a>
+                <a href="#resources">Resume & Certificates</a>
+            </div>
+        </nav>
+
+        <!-- Hero + Photo placeholder (ready for your photo) -->
+        <section id="home">
+            <div class="hero">
+                <div class="hero-content">
+                    <div class="hero-badge"><i class="fas fa-briefcase"></i> &nbsp;Software Engineer @ Arvillium Solutions</div>
+                    <h1>Building intelligent <span class="highlight">data-driven</span> solutions</h1>
+                    <p class="hero-desc">Hi, I'm Rushabh — a Computer Science postgraduate and Software Engineer with hands-on experience in Python automation, data analysis, and machine learning. I'm passionate about turning raw data into meaningful insights and building scalable ML-powered systems. My goal is to grow as a Machine Learning Engineer and contribute to impactful projects in the data and AI space.</p>
+                    <div class="btn-group">
+                        <a href="#projects" class="btn-primary"><i class="fas fa-arrow-down"></i> View work</a>
+                        <a href="#resources" class="btn-outline"><i class="fab fa-github"></i> GitHub resources</a>
+                    </div>
+                </div>
+                <div class="photo-frame">
+                    <!-- photo placeholder: you will replace with your image later -->
+                    <div class="photo-placeholder" id="photoSlot">
+                        <img src="https://raw.githubusercontent.com/rushabh241/portfolio-resources/main/Photo.jpg" alt="Rushabh Shreyas Vaidya" style="width:100%; height:100%; object-fit:cover; border-radius: inherit;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects section (modern portfolio examples) -->
+        <section id="projects">
+            <h2 class="section-title"><i class="fas fa-laptop-code"></i> Featured projects</h2>
+            <div class="projects-grid">
+                <div class="project-card glass-card">
+                    <h3>Chat Interface for Visualization</h3>
+                    <p>Hackathon submission (Woodpecker, Rounds 1 & 2). Built a natural language chat interface that lets users explore and visualize data through conversational queries — combining NLP with dynamic chart generation.</p>
+                    <div class="project-tags"><span class="tag">Python</span><span class="tag">NLP</span><span class="tag">HTML</span><span class="tag">Hackathon</span></div>
+                    <a href="https://github.com/rushabh241/Chat-Interface-For-Visualization-" class="card-link"
+                        target="_blank">GitHub repo →</a>
+                </div>
+                <div class="project-card glass-card">
+                    <h3>Google Search Percentage Forecast</h3>
+                    <p>Forecasts Google's global search engine market share for 2025 using ARIMA and ETS time series models. Includes dual-model comparison and trend visualizations built on historical data.</p>
+                    <div class="project-tags"><span class="tag">Python</span><span class="tag">ARIMA</span><span class="tag">ETS</span><span class="tag">Time Series</span><span class="tag">Jupyter</span></div>
+                    <a href="https://github.com/rushabh241/Google-Search-Percentage-Forecast" class="card-link"
+                        target="_blank">GitHub repo →</a>
+                </div>
+                <div class="project-card glass-card">
+                    <h3>Machine Learning Algorithms</h3>
+                    <p>Hands-on implementations of core ML algorithms — Regression, Classification, and Apriori association rule mining — using real-world datasets. A reference collection demonstrating practical ML fundamentals.</p>
+                    <div class="project-tags"><span class="tag">Python</span><span class="tag">Regression</span><span class="tag">Classification</span><span class="tag">Apriori</span><span class="tag">Jupyter</span></div>
+                    <a href="https://github.com/rushabh241/Machine-Learning-Algorithms" class="card-link"
+                        target="_blank">GitHub repo →</a>
+                </div>
+                <div class="project-card glass-card">
+                    <h3>GDP Data Analysis (Wikipedia)</h3>
+                    <p>Automated web scraper that extracts and cleans nominal GDP data from Wikipedia, then visualizes the top 10 global economies across IMF, World Bank, and UN estimates via an interactive CLI tool.</p>
+                    <div class="project-tags"><span class="tag">Python</span><span class="tag">BeautifulSoup</span><span class="tag">Pandas</span><span class="tag">Matplotlib</span><span class="tag">Web Scraping</span></div>
+                    <a href="https://github.com/rushabh241/gdp-data-analysis-wikipedia" class="card-link"
+                        target="_blank">GitHub repo →</a>
+                </div>
+                <div class="project-card glass-card">
+                    <h3>Amazon Sales 2025 Analysis</h3>
+                    <p>Interactive Excel dashboard analyzing Amazon sales performance for 2025, visualizing key metrics, revenue trends, and category breakdowns through dynamic charts and pivot tables.</p>
+                    <div class="project-tags"><span class="tag">Excel</span><span class="tag">Data Analysis</span><span class="tag">Dashboard</span></div>
+                    <a href="https://github.com/rushabh241/Amazon-Sales-2025-Analysis" class="card-link"
+                        target="_blank">GitHub repo →</a>
+                </div>
+                <div class="project-card glass-card">
+                    <h3>Global AI Job Market Dashboard</h3>
+                    <p>Interactive Excel dashboard showcasing 2025 global AI job market trends — covering demand by role, geography, and skill requirements — designed to surface actionable insights for career planning.</p>
+                    <div class="project-tags"><span class="tag">Excel</span><span class="tag">Data Analysis</span><span class="tag">Dashboard</span></div>
+                    <a href="https://github.com/rushabh241/Global-AI-Job-Market-Dashboard" class="card-link"
+                        target="_blank">GitHub repo →</a>
+                </div>
+            </div>
+            <div style="text-align: right; margin-top: 6px;"><a href="https://github.com/rushabh241?tab=repositories" target="_blank" style="color:#2563eb; text-decoration:none; font-weight:500;"><i class="fas fa-external-link-alt"></i> more on GitHub</a>
+            </div>
+        </section>
+
+        <!-- Experience + Education Row -->
+        <div class="dual-section" id="experience">
+            <div class="exp-card">
+                <h3 style="display: flex; gap: 10px; align-items: center; margin-bottom: 24px;"><i
+                        class="fas fa-briefcase"></i> Experience</h3>
+                <div class="exp-item">
+                    <h4>Summer Intern · <span style="font-weight:400; color:#475569;">iConcile Technologies Pvt. Ltd.</span></h4>
+                    <div class="date"><i class="far fa-calendar-alt"></i> May 2024 – June 2024 · Pune, India · Hybrid</div>
+                    <p>● Workflow Visualization: Designed and implemented workflow visualization using the React Flow
+                        library, leveraging JSON data for dynamic rendering.</p>
+                </div>
+                <div class="exp-item">
+                    <h4>SDE Intern · <span style="font-weight:400; color:#475569;">iConcile Technologies Pvt. Ltd.</span></h4>
+                    <div class="date"><i class="far fa-calendar-alt"></i> January 2025 – July 2025 · Pune, India · Hybrid</div>
+                    <p>● Automated Testing: Developed and implemented Cypress test scripts, reducing testing time and
+                        improving efficiency.
+                        <br><br>
+                        ● Python Automation: <br>
+                        1) Developed a Python script to dynamically duplicate directories/files and update XML data
+                        based on Excel data, streamlining data processing.
+                        <br>
+                        2) Developed a Python script to dynamically compare input and output XML data and generate
+                        reports for validation and analysis.
+                        <br>
+                        3) Developed a Python script to automate the dashboard migration process in Metabase.
+                    </p>
+                </div>
+                <div class="exp-item">
+                    <h4>SDE · <span style="font-weight:400; color:#475569;">KADInnova Technologies Pvt. Ltd.</span></h4>
+                    <div class="date"><i class="far fa-calendar-alt"></i> August 2025 – March 2026 · Pune, India · On-site</div>
+                    <p>● Flask · Retrieval-Augmented Generation (RAG)</p>
+                </div>
+                <div class="exp-item">
+                    <h4>Software Engineer · <span style="font-weight:400; color:#475569;">Arvillium Solutions</span></h4>
+                    <div class="date"><i class="far fa-calendar-alt"></i> April 2026 – Present · Pune, India · On-site</div>
+                </div>
+            </div>
+            <div class="edu-card" id="education">
+                <h3 style="display: flex; gap: 10px; align-items: center; margin-bottom: 24px;"><i
+                        class="fas fa-graduation-cap"></i> Education</h3>
+                <div class="edu-item">
+                    <h4>B.Sc. Computer Science</h4>
+                    <div class="date">2020 – 2023</div>
+                    <p>Relevant coursework: Python, Java, SQL</p>
+                    <p>CGPA: 9.18/10.0</p>
+                </div>
+                <div class="edu-item">
+                    <h4>M.Sc. Computer Science</h4>
+                    <div class="date">2023 – 2025</div>
+                    <p>Machine Learning</p>
+                    <p>CGPA: 9.32/10.0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resume & Certificates (GitHub hosted links) -->
+        <div class="resources" id="resources">
+            <div class="res-text"><i class="fas fa-folder-open"></i> <strong>📄 important links</strong><br>Resume,
+                certificates, and more stored on GitHub – click to access</div>
+            <div class="resource-buttons">
+                <a href="https://github.com/rushabh241/portfolio-resources/blob/main/Resume.pdf" class="github-link" target="_blank" id="resumeLink"><i
+                        class="fas fa-file-pdf"></i> Resume (PDF)</a>
+                <a href="https://github.com/rushabh241" class="github-link" target="_blank" id="certLink"><i
+                        class="fas fa-certificate"></i> Certificates</a>
+                <a href="https://github.com/rushabh241" class="github-link" target="_blank" id="githubProfileLink"><i
+                        class="fab fa-github"></i> GitHub Profile</a>
+            </div>
+        </div>
+
+        <!-- Additional section: more things portfolio websites contain (skills, interests) -->
+        <div
+            style="margin: 40px 0 20px; background: white; border-radius: 1.5rem; padding: 1.8rem; border: 1px solid #eef2ff;">
+            <div style="display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between;">
+                <div>
+                    <h3 style="margin-bottom: 16px;"><i class="fas fa-cogs"></i> Core Skills</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+                        <span style="background:#eef2ff; padding:6px 16px; border-radius:40px;">Python</span>
+                        <span style="background:#eef2ff; padding:6px 16px; border-radius:40px;">SQL</span>
+                        <span style="background:#eef2ff; padding:6px 16px; border-radius:40px;">Data Analysis</span>
+                        <span style="background:#eef2ff; padding:6px 16px; border-radius:40px;">Machine Learning</span>
+                        <span style="background:#eef2ff; padding:6px 16px; border-radius:40px;">RAG</span>
+                        <span style="background:#eef2ff; padding:6px 16px; border-radius:40px;">Automation</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 16px;"><i class="fas fa-heart"></i> Interests & extras</h3>
+                    <div>✨ Open source · 🎨 Machine Learning · 📱 Automation · 🤝 AI Enthusiast · ✍️ Business
+                        Understanding
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PDF Viewer Modal -->
+        <div class="pdf-modal-overlay" id="pdfModal">
+            <div class="pdf-modal">
+                <div class="pdf-modal-bar">
+                    <span><i class="fas fa-file-pdf" style="color:#f87171; margin-right:8px;"></i>Rushabh Shreyas Vaidya — Resume</span>
+                    <div style="display:flex; align-items:center; gap:20px;">
+                        <a href="#" id="pdfDownloadLink" download="Rushabh_Vaidya_Resume.pdf"><i class="fas fa-download"></i> Download</a>
+                        <button class="pdf-close" id="pdfClose" aria-label="Close">&times;</button>
+                    </div>
+                </div>
+                <iframe id="pdfFrame" src="" title="Resume PDF"></iframe>
+            </div>
+        </div>
+
+        <!-- Footer with social icons (placeholder) -->
+        <footer>
+            <div class="social-links">
+                <a href="https://github.com/rushabh241" target="_blank" aria-label="GitHub"><i
+                        class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/rushabh-shreyas-vaidya-b1a333232/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+            </div>
+            <p>© 2026 Rushabh S. Vaidya —
+            </p>
+        </footer>
+    </div>
+
+    <!-- small js: interactive text for GitHub links reminder + open external, 
+     also add dynamic year but not needed, plus handle placeholder photo hint 
+     also handle update of links: fill with your actual urls easily via dataset / prompt -->
+    <script>
+        (function () {
+            // ---- IMPORTANT FOR YOU: edit these three variables with YOUR real GitHub links ----
+            // After you host your resume.pdf and certificates folder on GitHub, update:
+            const MY_GITHUB_USERNAME = "rushabh241";
+            const REPO_NAME = "portfolio-resources";           // ← repo where you store resume & certs
+            // full raw or blob links examples:
+            const RESUME_GITHUB_URL = `https://raw.githubusercontent.com/${MY_GITHUB_USERNAME}/${REPO_NAME}/main/Resume.pdf`;
+            const CERTS_GITHUB_URL = `https://github.com/${MY_GITHUB_USERNAME}/${REPO_NAME}/tree/main/certificates`;
+            const GITHUB_PROFILE_URL = `https://github.com/${MY_GITHUB_USERNAME}`;
+
+            // also update any existing github link inside footer and resource buttons
+            const resumeBtn = document.getElementById('resumeLink');
+            const certBtn = document.getElementById('certLink');
+            const githubProfile = document.getElementById('githubProfileLink');
+            const footerGit = document.querySelector('.social-links a[href*="github.com/YOUR_USERNAME"]');
+
+            // Wire up PDF modal
+            const pdfModal = document.getElementById('pdfModal');
+            const pdfFrame = document.getElementById('pdfFrame');
+            const pdfClose = document.getElementById('pdfClose');
+            const pdfDownloadLink = document.getElementById('pdfDownloadLink');
+
+            function openResumeModal(e) {
+                e.preventDefault();
+                pdfFrame.src = 'Resume.pdf';
+                pdfDownloadLink.href = 'Resume.pdf';
+                pdfModal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            pdfClose.addEventListener('click', () => {
+                pdfModal.classList.remove('open');
+                pdfFrame.src = '';
+                document.body.style.overflow = '';
+            });
+
+            pdfModal.addEventListener('click', (e) => {
+                if (e.target === pdfModal) {
+                    pdfClose.click();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') pdfClose.click();
+            });
+
+            if (resumeBtn) {
+                resumeBtn.addEventListener('click', openResumeModal);
+            }
+
+            certBtn.href = CERTS_GITHUB_URL;
+            githubProfile.href = GITHUB_PROFILE_URL;
+            if (footerGit) footerGit.href = GITHUB_PROFILE_URL;
+
+            // for all demo project links, replace with real ones or keep as placeholder
+            // we also prepopulate card links pointing to your github profile as fallback
+            const allProjectLinks = document.querySelectorAll('.project-card .card-link');
+            const baseRepo = GITHUB_PROFILE_URL;
+            if (baseRepo && MY_GITHUB_USERNAME !== "YOUR_USERNAME") {
+                allProjectLinks.forEach((link, idx) => {
+                    if (link.innerText.includes('GitHub') || link.innerText.includes('Source')) {
+                        if (!link.href.includes('YOUR_USERNAME') && link.href === '#') {
+                            link.href = `${GITHUB_PROFILE_URL}?tab=repositories`;
+                        } else if (link.href === '#') {
+                            link.href = `${GITHUB_PROFILE_URL}?tab=repositories`;
+                        }
+                    }
+                });
+            } else {
+                // keep informative alert but not intrusive
+                const demoCardLinks = document.querySelectorAll('.project-card .card-link');
+                demoCardLinks.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        if (link.href === '#' || link.href.includes('YOUR_USERNAME')) {
+                            e.preventDefault();
+                            alert('🔧 Customize this project link: replace with your actual GitHub repository URL. This is a frontend-only template — you can update href attributes directly.');
+                        }
+                    });
+                });
+            }
+
+            // Photo area: provide interactive note that you can add image later
+            const photoDiv = document.getElementById('photoSlot');
+            if (photoDiv) {
+                photoDiv.style.cursor = 'pointer';
+                photoDiv.addEventListener('click', () => {
+                    alert("📸 Photo placeholder — replace the content inside .photo-placeholder with your own <img> tag.\nExample:\n<img src='your-photo-url.jpg' style='width:100%; height:100%; object-fit:cover; border-radius: inherit;'>");
+                });
+            }
+
+            // smooth scroll for all anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === "#" || targetId === "") return;
+                    const targetElem = document.querySelector(targetId);
+                    if (targetElem) {
+                        e.preventDefault();
+                        targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        })();
+    </script>
+    <!-- 
+  INSTRUCTIONS FOR YOU (future customization):
+  1. Change all YOUR_USERNAME inside the <script> block (lines near 340–350) with your GitHub username.
+  2. Upload resume.pdf and certificates folder to a GitHub repo (public) and point RESUME_GITHUB_URL / CERTS_GITHUB_URL accordingly.
+  3. To add your photo: replace the .photo-placeholder <div> content with <img src="link-to-your-image"> and adjust dimensions.
+  4. Projects, experience, education are fully editable — update texts inside HTML.
+  5. Host this single index.html file on any static hosting (GitHub Pages) as is, zero backend needed.
+-->
+</body>
+
+</html>
